@@ -1,6 +1,11 @@
-#include "nn.hpp"
+/*
+ * auteur : Julien Miens
+ * date : 10/2019
+ * description : implémentation des classes de nn.hpp et des fonctions
+ * d'apprentissage
+ */
 
-// =============================================================================
+#include "nn.hpp"
 
 Neuron_layer::Neuron_layer(int input, int output, double alpha,
                                         Matrix (*activ)(Matrix, bool),
@@ -40,7 +45,7 @@ Layer *Neuron_layer::fusion(Layer *n2){
             double p = random(p);
             if (p < 0.49){ n3->W(j,i) = this->W(j,i); }
             else if (p < 0.98){ n3->W(j,i) = n22->W(j,i); }
-            // else : laisser le gene aléatoire
+            // else : laisser le gène aléatoire
         }
         double p = random(p);
         if (p < 0.49){ n3->B(0,i) = this->B(0,i); }
@@ -114,6 +119,8 @@ bool tri(couple c1, couple c2){
     return c1.error < c2.error;
 }
 
+// retourne une matrice de même forme que x mais dont les coefficients sont tous
+// nuls sont le plus grand de x
 Matrix max(Matrix x){
     Matrix y(x);
     int x_m = 0;
@@ -131,13 +138,15 @@ Matrix max(Matrix x){
     return y;
 }
 
-Network *genetic_learning(double epsilon, int pop_size, int max_gen, int hidden_size,
+Network *genetic_learning(double epsilon, int pop_size, int max_gen,
+            int hidden_size,
             std::vector<std::vector<double>> x,
             std::vector<std::vector<double>> y,
             double (*calc_error)(Network*, std::vector<std::vector<double>>,
                 std::vector<std::vector<double>>),
             bool verbose,
             int nb_vue){
+
     auto init_fun_rand = [](double x) -> double { return random(x, 10.0); };
 
     int elite = pop_size/10;
@@ -146,8 +155,10 @@ Network *genetic_learning(double epsilon, int pop_size, int max_gen, int hidden_
     std::vector<couple> population;
     for(int i = 0; i < pop_size; i++){
         Network *n = new Network;
-        n->add_layer(new Neuron_layer(x[0].size(), hidden_size, 0.1, sigmoid_m, init_fun_rand));
-        n->add_layer(new Neuron_layer(hidden_size, y[0].size(), 0.1, sigmoid_m, init_fun_rand));
+        n->add_layer(new Neuron_layer(x[0].size(), hidden_size, 0.1, sigmoid_m,
+                                                                init_fun_rand));
+        n->add_layer(new Neuron_layer(hidden_size, y[0].size(), 0.1, sigmoid_m,
+                                                                init_fun_rand));
         couple c = {n, 0.0};
         population.push_back(c);
     }
@@ -187,8 +198,10 @@ Network *genetic_learning(double epsilon, int pop_size, int max_gen, int hidden_
         // on ajoute de la diversité avec de nouveaux aléatoires
         for(int i = 0; i < new_pop; i++){
             Network * n = new Network;
-            n->add_layer(new Neuron_layer(x[0].size(), hidden_size, 0.1, sigmoid_m));
-            n->add_layer(new Neuron_layer(hidden_size, y[0].size(), 0.1, sigmoid_m));
+            n->add_layer(new Neuron_layer(x[0].size(), hidden_size, 0.1,
+                                                                    sigmoid_m));
+            n->add_layer(new Neuron_layer(hidden_size, y[0].size(), 0.1,
+                                                                    sigmoid_m));
             couple c = {n, 0.0};
             new_generation.push_back(c);
         }
@@ -215,15 +228,18 @@ Network *genetic_learning(double epsilon, int pop_size, int max_gen, int hidden_
 
 // =============================================================================
 
-Network * gradient_descent_learning(double epsilon, int max_iterations, int hidden_size,
+Network * gradient_descent_learning(double epsilon, int max_iterations,
+            int hidden_size,
             double learning_rate, std::vector<std::vector<double>> x,
             std::vector<std::vector<double>> y,
             double (*calc_error)(Network*, std::vector<std::vector<double>>,
                 std::vector<std::vector<double>>),
                 bool verbose, int nb_vue){
     Network * nn_test = new Network;
-    nn_test->add_layer(new Neuron_layer(x[0].size(), hidden_size, learning_rate, sigmoid_m));
-    nn_test->add_layer(new Neuron_layer(hidden_size, y[0].size(), learning_rate, sigmoid_m));
+    nn_test->add_layer(new Neuron_layer(x[0].size(), hidden_size, learning_rate,
+                                                                    sigmoid_m));
+    nn_test->add_layer(new Neuron_layer(hidden_size, y[0].size(), learning_rate,
+                                                                    sigmoid_m));
 
     double error;
     int iterations = 0;

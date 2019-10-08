@@ -1,10 +1,12 @@
 all : network
 
 network: build/matrix.o build/nn.o build/test.o build/random.o build/activation.o
+	mkdir -p build
 	g++ -g -O0 -o test $^
 	./test
 
 rnn: build/matrix.o build/rnn.o build/test_rnn.o build/random.o build/activation.o
+	mkdir -p build
 	g++ -g -O0 -o test $^
 	./test
 
