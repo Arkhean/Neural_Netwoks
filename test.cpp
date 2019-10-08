@@ -1,3 +1,10 @@
+/*
+ * auteur : Julien Miens
+ * date : 10/2019
+ * description : tests sur les réseaux de neurones
+ * contient les fonctions d'import des données pour IRIS et MNIST
+ */
+
 #include <bits/stdc++.h>    // sort vector
 #include <algorithm>        // std::max
 
@@ -86,19 +93,27 @@ int load_iris(std::vector<std::vector<double>> & x,
 int main(int argc, char * argv[]){
     srand(time(NULL));
 
+    // premier test : apprendre le ou exclusif
     std::vector<std::vector<double>> x = {{0,0}, {0,1}, {1,0}, {1,1}};
     std::vector<std::vector<double>> y = {{0}, {1}, {1}, {0}};
 
+    // d'abord avec la méthode de descente graduelle
     std::cout << "Résolution OU_EXCLUSIF utilisant la descente graduelle" << '\n';
     Network * n = gradient_descent_learning(1e-4, 100000, 4, 0.5, x, y,
                                                     calculate_error, true);
     delete n;
     std::cout << "===================================================" << '\n';
+
+    // ensuite avec l'algorithmique génétique
     std::cout << "Résolution OU_EXCLUSIF utilisant un algorithme génétique" << '\n';
     n = genetic_learning(1e-4, 1000, 1000, 4, x, y,
                                                 calculate_error, true);
     delete n;
     std::cout << "===================================================" << '\n';
+
+    // troisième test : apprentissage de classification sur la base de données
+    // IRIS : 3 catégories de fleurs selon les dimensions des pétales/sépales
+    // traitement un peu plus long
     std::cout << "Résolution IRIS utilisant la descente graduelle" << '\n';
     if (load_iris(x, y) != -1){
         n = gradient_descent_learning(1e-3, 10000, 6, 0.1, x, y,
@@ -106,9 +121,11 @@ int main(int argc, char * argv[]){
         delete n;
     }
     std::cout << "===================================================" << '\n';
+
+    // quatrième test : reconnaissance des chiffres de MNIST
+    // apprentissage assez long (+ 1h...)
     std::cout << "Résolution MNIST utilisant la descente graduelle" << '\n';
     if (load_mnist(x, y, 1000) != -1){
-        // long mais ça fonctionne !
         n = gradient_descent_learning(1e-2, 1000, 32, 0.1, x, y,
                                                 calculate_error, true, 1000);
         delete n;
