@@ -15,3 +15,7 @@ Possibilité de choisir les fonctions d'activation (sigmoide, tangente, relu).
 Le réseau standard est testé sur IRIS ainsi que sur MNIST.
 
 Le réseau récursif est testé sur l'addition binaire (retenue...)
+
+# Note
+
+Le logiciel utilise une partie du code de Baptiste Wicht disponible ici : https://github.com/wichtounet/mnist pour la lecture des fichiers contenant la base de données MNIST.

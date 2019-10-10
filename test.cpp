@@ -127,7 +127,7 @@ int main(int argc, char * argv[]){
     std::cout << "Résolution MNIST utilisant la descente graduelle" << '\n';
     if (load_mnist(x, y, 1000) != -1){
         n = gradient_descent_learning(1e-2, 1000, 32, 0.1, x, y,
-                                                calculate_error, true, 1000);
+                                                        calculate_error, true);
         delete n;
     }
     return 0;

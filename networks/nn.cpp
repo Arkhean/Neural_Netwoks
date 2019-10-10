@@ -3,6 +3,7 @@
  * date : 10/2019
  * description : implémentation des classes de nn.hpp et des fonctions
  * d'apprentissage
+ * voir le fichier nn.hpp pour les explications sur les fonctions
  */
 
 #include "nn.hpp"
@@ -173,7 +174,7 @@ Network *genetic_learning(double epsilon, int pop_size, int max_gen,
         if (population[0].error < epsilon){
             break;
         }
-        if (verbose && (gen % (max_gen/nb_vue)) == 0){
+        if (verbose && (gen % nb_vue) == 0){
             std::cout << "generations : " << gen;
             std::cout << " ; error = " << population[0].error << '\n';
             int k = rand() % x.size();
@@ -253,7 +254,7 @@ Network * gradient_descent_learning(double epsilon, int max_iterations,
             nn_test->learn(x[j], y[j]);
         }
         error = calc_error(nn_test, x, y);
-        if (verbose && (iterations % (max_iterations/nb_vue)) == 0){
+        if (verbose && (iterations % nb_vue) == 0){
             std::cout << "iterations : " << iterations;
             std::cout << " ; error = " << error << '\n';
         }

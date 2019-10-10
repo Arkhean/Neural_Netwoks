@@ -16,10 +16,16 @@ class RNN{
         int hidden_size;
     public :
         RNN(int input_size, int hidden_size, int output_size, double alpha);
+        // retourne une séquence de même longueur que l'entrée
+        // chaque élément ayant été prédit par le réseau en connaissance des
+        // précédents
         std::vector<std::vector<double>> predict(std::vector<std::vector<double>> x);
-        // pour faire apprendre une séquence de vecteurs
+        // fait apprendre une séquence
+        // action à répéter beaucoup pour atteindre la convergence
         double learn(std::vector<std::vector<double>> x,
                             std::vector<std::vector<double>> y);
 };
+
+// TODO : fonction pour apprendre une liste de séquences de vecteurs
 
 #endif

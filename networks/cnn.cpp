@@ -1,3 +1,7 @@
+/*
+ * TRAVAIL EN COURS...
+ */
+
 #include "cnn.hpp"
 
 Convolution_layer::Convolution_layer(int nb_kernels, int kernel_size, double alpha){
@@ -21,7 +25,7 @@ std::vector<Matrix> Convolution_layer::predict(std::vector<Matrix> x){
 }
 
 std::vector<Matrix> learn(std::vector<Matrix> x, std::vector<Matrix> delta){
-    
+
 }
 
 // =============================================================================

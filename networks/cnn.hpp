@@ -1,3 +1,11 @@
+/*
+ * auteur : Julien Miens
+ * date : 10/2019
+ * description : déclarations des classes du réseau convolutionnel
+ * ATTENTION : TRAVAIL EN COURS ...
+ */
+
+
 #ifndef CNN_H
 #define CNN_H
 
