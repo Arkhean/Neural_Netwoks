@@ -2,7 +2,7 @@
 
 Implémentations et tests de réseaux de neurones standards et aussi récursifs.
 
-Le réseau de neurones standards est configurable (nombre de niveau, dropout, ...)
+Le réseau de neurones standards est configurable (nombre de niveaux, dropout, ...)
 
 Deux méthodes d'apprentissage sont possibles :
 * par descente graduelle
