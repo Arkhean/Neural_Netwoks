@@ -100,7 +100,7 @@ int main(int argc, char * argv[]){
     // d'abord avec la méthode de descente graduelle
     std::cout << "Résolution OU_EXCLUSIF utilisant la descente graduelle" << '\n';
     Network * n = gradient_descent_learning(1e-4, 100000, 4, 0.5, x, y,
-                                                    calculate_error, true);
+                                                    calculate_error, true, 1000);
     delete n;
     std::cout << "===================================================" << '\n';
 

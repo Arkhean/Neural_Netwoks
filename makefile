@@ -12,6 +12,15 @@ rnn: build/matrix.o build/rnn.o build/test_rnn.o build/random.o build/activation
 
 # ==============================================================================
 
+networks.so: networks/nn.cpp utils/matrix.cpp utils/random.cpp utils/activation.cpp
+	g++ -o lib$@ $^ -fPIC -shared
+
+	# g++ -L. -lnetworks test.cpp
+	# export LD_LIBRARY_PATH=~/projets/Neural_Networks:$LD_LIBRARY_PATH
+
+
+# ==============================================================================
+
 build/matrix.o : utils/matrix.hpp utils/matrix.cpp
 	g++ -g -O0 -c utils/matrix.cpp -o $@
 build/random.o : utils/random.hpp utils/random.cpp
