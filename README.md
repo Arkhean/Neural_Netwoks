@@ -16,6 +16,16 @@ Le réseau standard est testé sur IRIS ainsi que sur MNIST.
 
 Le réseau récursif est testé sur l'addition binaire (retenue...)
 
+# Librairie dynamique
+
+On peut compiler le projet sous forme de librairie : 
+
+make networks.so
+
+On peut alors l'utiliser sur un test (sans oublier LD_LIBRARY_PATH) :
+
+g++ test.cpp -L. -lnetworks
+
 # Note
 
 Le logiciel utilise une partie du code de Baptiste Wicht disponible ici : https://github.com/wichtounet/mnist pour la lecture des fichiers contenant la base de données MNIST.
