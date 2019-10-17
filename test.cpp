@@ -8,7 +8,7 @@
 #include <bits/stdc++.h>    // sort vector
 #include <algorithm>        // std::max
 
-#include "mnist/mnist_reader.hpp"
+#include "mnist/mnist_reader_less.hpp"
 #include "mnist/mnist_utils.hpp"
 
 #include "networks/nn.hpp"
@@ -33,8 +33,10 @@ int load_mnist(std::vector<std::vector<double>> & x,
     y.clear();
 
     // Load MNIST data
-    mnist::MNIST_dataset<std::vector, std::vector<double>, uint8_t> dataset =
-        mnist::read_dataset<std::vector, std::vector, double, uint8_t>("data");
+    //mnist::MNIST_dataset<std::vector, std::vector<double>, uint8_t> dataset =
+    //    mnist::read_dataset<std::vector, std::vector, double, uint8_t>("data");
+
+    mnist::MNIST_dataset<double, uint8_t> dataset = mnist::read_dataset<double, uint8_t>();
 
     binarize_dataset(dataset);
     std::vector<std::vector<double>> images(dataset.training_images.begin(),
