@@ -1,4 +1,4 @@
-#include "rnn.hpp"
+#include "include/rnn.hpp"
 
 // =============================================================================
 RNN::RNN(int input_size, int hidden_size, int output_size, double alpha){

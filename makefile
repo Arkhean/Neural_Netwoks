@@ -21,15 +21,15 @@ networks.so: networks/nn.cpp utils/matrix.cpp utils/random.cpp utils/activation.
 
 # ==============================================================================
 
-build/matrix.o : utils/matrix.hpp utils/matrix.cpp
+build/matrix.o : include/matrix.hpp utils/matrix.cpp
 	g++ -g -O0 -c utils/matrix.cpp -o $@
-build/random.o : utils/random.hpp utils/random.cpp
+build/random.o : include/random.hpp utils/random.cpp
 	g++ -g -O0 -c utils/random.cpp -o $@
-build/activation.o : utils/activation.hpp utils/activation.cpp
+build/activation.o : include/activation.hpp utils/activation.cpp
 	g++ -g -O0 -c utils/activation.cpp -o $@
-build/nn.o : networks/nn.cpp networks/nn.hpp
+build/nn.o : networks/nn.cpp include/nn.hpp
 	g++ -g -O0 -c networks/nn.cpp -o $@
-build/rnn.o : networks/rnn.cpp networks/rnn.hpp
+build/rnn.o : networks/rnn.cpp include/rnn.hpp
 	g++ -g -O0 -c networks/rnn.cpp -o $@
 build/test.o : test.cpp
 	g++ -g -O0 -c test.cpp -o $@

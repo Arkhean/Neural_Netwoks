@@ -11,7 +11,7 @@
 #include "mnist/mnist_reader_less.hpp"
 #include "mnist/mnist_utils.hpp"
 
-#include "networks/nn.hpp"
+#include "include/nn.hpp"
 
 // calcul de l'erreur comme somme des carrés des différences prédit/réel
 double calculate_error(Network *network, std::vector<std::vector<double>> x,

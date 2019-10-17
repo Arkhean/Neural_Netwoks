@@ -8,9 +8,9 @@
 #ifndef NN_MOD_H
 #define NN_MOD_H
 
-#include "../utils/matrix.hpp"
-#include "../utils/random.hpp"
-#include "../utils/activation.hpp"
+#include "matrix.hpp"
+#include "random.hpp"
+#include "activation.hpp"
 
 #include <typeinfo>
 #include <algorithm>    // std::max ; sort

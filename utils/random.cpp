@@ -1,4 +1,4 @@
-#include "random.hpp"
+#include "../include/random.hpp"
 #include <iostream>     // rand
 
 // need srand before ...

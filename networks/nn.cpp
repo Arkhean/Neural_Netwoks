@@ -6,7 +6,7 @@
  * voir le fichier nn.hpp pour les explications sur les fonctions
  */
 
-#include "nn.hpp"
+#include "../include/nn.hpp"
 
 Neuron_layer::Neuron_layer(int input, int output, double alpha,
                                         Matrix (*activ)(Matrix, bool),

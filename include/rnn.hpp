@@ -1,9 +1,9 @@
 #ifndef RNN_H
 #define RNN_H
 
-#include "../utils/matrix.hpp"
-#include "../utils/random.hpp"
-#include "../utils/activation.hpp"
+#include "matrix.hpp"
+#include "random.hpp"
+#include "activation.hpp"
 
 class RNN{
     private :
